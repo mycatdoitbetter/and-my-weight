@@ -7,12 +7,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  text: {
+    fontSize: 24,
+    fontFamily: "UbuntuBold",
+  },
 });
 
 const InitialBoard: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Hello World!</Text>
+      <Text style={styles.text}>Hello World!</Text>
     </View>
   );
 };
