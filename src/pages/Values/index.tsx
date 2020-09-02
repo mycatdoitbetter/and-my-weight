@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Slider from "@react-native-community/slider";
+// import Slider from "@react-native-community/slider";
 
 const styles = StyleSheet.create({
   container: {

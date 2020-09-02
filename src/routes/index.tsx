@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import "react-native-gesture-handler";
 import * as React from "react";
 import {
   createStackNavigator,
   StackNavigationOptions,
 } from "@react-navigation/stack";
-// import { StackNavigationOptions } from "@react-navigation/native";
 
 import InitialBoard from "../pages/InitialBoard";
 import ChooseGenre from "../pages/ChooseGenre";
@@ -13,7 +14,8 @@ import Values from "../pages/Values";
 const Stack = createStackNavigator();
 
 export default function MainStack() {
-  const options = ({ title }: StackNavigationOptions) => ({
+  // 'Any' type because i can't identify the best prop.
+  const options: any = ({ title }: StackNavigationOptions) => ({
     headerStyle: {
       backgroundColor: "#355C7D",
       elevation: 0,
