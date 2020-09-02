@@ -6,8 +6,10 @@ import SwitchSelector, {
 import { useNavigation } from "@react-navigation/native";
 
 import GoToNext from "../../components/Button";
+import man from "../../../assets/man_shape.png";
+import woman from "../../../assets/woman_shape.png";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     right: 0,
     marginLeft: width / 2 - 135,
   },
-  image: { height: 320, width: width / 2 },
+  image: { height: height * 0.4, width: width / 2 },
 });
 
 const ChooseGenre = () => {
@@ -70,12 +72,12 @@ const ChooseGenre = () => {
       >
         <View style={genre === "1" ? styles.ellipseWoman : styles.ellipseMan} />
         <ImageBackground
-          source={require("../../../assets/woman_shape.png")}
+          source={woman}
           style={styles.image}
           resizeMode="contain"
         />
         <ImageBackground
-          source={require("../../../assets/man_shape.png")}
+          source={man}
           style={styles.image}
           resizeMode="contain"
         />
@@ -89,6 +91,7 @@ const ChooseGenre = () => {
         }}
         backgroundColor="#355C7D"
         textStyle={{ fontFamily: "UbuntuRegular" }}
+        selectedTextStyle={{ fontFamily: "UbuntuRegular" }}
         selectedColor="#fff"
         textColor="#fff"
         buttonColor="#FF7582"
@@ -98,7 +101,11 @@ const ChooseGenre = () => {
         fontSize={30}
         onPress={(value) => setGenre(value)}
       />
-      <GoToNext onPress={() => navigate("Values")} />
+      <GoToNext
+        onPress={() =>
+          navigate("Values", { genre: genre === "1" ? "man" : "woman" })
+        }
+      />
     </View>
   );
 };

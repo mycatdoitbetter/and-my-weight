@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 21,
 
-    height: 65,
-    width: 65,
-    borderRadius: 32.5,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
 
     backgroundColor: "#FF7582",
 
@@ -27,7 +27,7 @@ interface PropsButton {
 const Button = ({ onPress }: PropsButton) => {
   return (
     <RectButton style={styles.goNextButton} onPress={onPress}>
-      <Feather name="arrow-right" style={styles.arrow} size={50} />
+      <Feather name="arrow-right" style={styles.arrow} size={30} />
     </RectButton>
   );
 };
