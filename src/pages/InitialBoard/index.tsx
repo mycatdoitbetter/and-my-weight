@@ -59,7 +59,7 @@ const InitialBoard = () => {
         Your BMI Calculator, simple and on your hand!
       </Text>
       <ImageBackground
-        source={require("../../../assets/initialBoardHD.png")}
+        source={require("../../../assets/initialBoard.png")}
         resizeMode="contain"
         style={styles.backgroundImage}
       />

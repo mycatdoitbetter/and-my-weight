@@ -7,10 +7,13 @@ const styles = StyleSheet.create({
   goNextButton: {
     position: "absolute",
     bottom: 21,
+
     height: 65,
     width: 65,
     borderRadius: 32.5,
+
     backgroundColor: "#FF7582",
+
     alignItems: "center",
     justifyContent: "center",
   },
