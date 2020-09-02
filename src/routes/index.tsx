@@ -4,13 +4,30 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from "@react-navigation/stack";
+// import { StackNavigationOptions } from "@react-navigation/native";
 
 import InitialBoard from "../pages/InitialBoard";
 import ChooseGenre from "../pages/ChooseGenre";
+import Values from "../pages/Values";
 
 const Stack = createStackNavigator();
 
 export default function MainStack() {
+  const options = ({ title }: StackNavigationOptions) => ({
+    headerStyle: {
+      backgroundColor: "#355C7D",
+      elevation: 0,
+    },
+    headerTintColor: "#fff",
+    headerTitleAlign: "center",
+    title,
+    headerTitleStyle: {
+      color: "#fff",
+      fontSize: 30,
+      fontFamily: "UbuntuRegular",
+    },
+  });
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -21,20 +38,12 @@ export default function MainStack() {
       <Stack.Screen
         name="ChooseGenre"
         component={ChooseGenre}
-        options={{
-          headerStyle: {
-            backgroundColor: "#355C7D",
-            elevation: 0,
-          },
-          headerTintColor: "#fff",
-          headerTitleAlign: "center",
-          title: "Choose one",
-          headerTitleStyle: {
-            color: "#fff",
-            fontSize: 30,
-            fontFamily: "UbuntuRegular",
-          },
-        }}
+        options={options({ title: "Choose one" })}
+      />
+      <Stack.Screen
+        name="Values"
+        component={Values}
+        options={options({ title: "Weight & Height" })}
       />
     </Stack.Navigator>
   );

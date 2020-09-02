@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     right: 0,
     marginLeft: width / 2 - 135,
   },
+  image: { height: 320, width: width / 2 },
 });
 
 const ChooseGenre = () => {
@@ -70,12 +71,12 @@ const ChooseGenre = () => {
         <View style={genre === "1" ? styles.ellipseWoman : styles.ellipseMan} />
         <ImageBackground
           source={require("../../../assets/woman_shape.png")}
-          style={{ height: 320, width: width / 2 }}
+          style={styles.image}
           resizeMode="contain"
         />
         <ImageBackground
           source={require("../../../assets/man_shape.png")}
-          style={{ height: 320, width: width / 2 }}
+          style={styles.image}
           resizeMode="contain"
         />
       </View>
@@ -87,6 +88,7 @@ const ChooseGenre = () => {
           marginBottom: 86,
         }}
         backgroundColor="#355C7D"
+        textStyle={{ fontFamily: "UbuntuRegular" }}
         selectedColor="#fff"
         textColor="#fff"
         buttonColor="#FF7582"
@@ -96,7 +98,7 @@ const ChooseGenre = () => {
         fontSize={30}
         onPress={(value) => setGenre(value)}
       />
-      <GoToNext onPress={() => navigate("InitialBoard")} />
+      <GoToNext onPress={() => navigate("Values")} />
     </View>
   );
 };
