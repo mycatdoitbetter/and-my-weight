@@ -1,5 +1,5 @@
 import React from "react";
-import { RectButton } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -8,7 +8,8 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+
+import GoToNext from "../../components/Button";
 
 const { width, height } = Dimensions.get("window");
 
@@ -44,18 +45,10 @@ const styles = StyleSheet.create({
     height: height - 400,
     marginVertical: 31,
   },
-  goNextButton: {
-    height: 65,
-    width: 65,
-    borderRadius: 32.5,
-    backgroundColor: "#FF7582",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  arrow: { color: "#355C7D" },
 });
 
 const InitialBoard = () => {
+  const { navigate } = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.viewLogo}>
@@ -66,13 +59,11 @@ const InitialBoard = () => {
         Your BMI Calculator, simple and on your hand!
       </Text>
       <ImageBackground
-        source={require("../../../assets/initialBoard.png")}
+        source={require("../../../assets/initialBoardHD.png")}
         resizeMode="contain"
         style={styles.backgroundImage}
       />
-      <RectButton style={styles.goNextButton}>
-        <Feather name="arrow-right" style={styles.arrow} size={50} />
-      </RectButton>
+      <GoToNext onPress={() => navigate("ChooseGenre")} />
     </View>
   );
 };
