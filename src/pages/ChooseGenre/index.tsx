@@ -3,11 +3,12 @@ import { View, StyleSheet, Dimensions, ImageBackground } from "react-native";
 import SwitchSelector, {
   ISwitchSelectorOption,
 } from "react-native-switch-selector";
-import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import GoToNext from "../../components/Button";
 import man from "../../../assets/man_shape.png";
 import woman from "../../../assets/woman_shape.png";
+import { MainParamList } from "../../routes/MainParamList";
 
 const { width, height } = Dimensions.get("window");
 
@@ -49,7 +50,11 @@ const styles = StyleSheet.create({
   image: { height: height * 0.4, width: width / 2 },
 });
 
-const ChooseGenre = () => {
+const ChooseGenre = ({
+  navigation,
+}: {
+  navigation: StackNavigationProp<MainParamList, "ChooseGenre">;
+}) => {
   const options = [
     { label: "Female", value: "0" },
     { label: "Male", value: "1" },
@@ -59,7 +64,7 @@ const ChooseGenre = () => {
     0
   );
 
-  const { navigate } = useNavigation();
+  const { navigate } = navigation;
 
   return (
     <View style={styles.container}>

@@ -11,7 +11,9 @@ import InitialBoard from "../pages/InitialBoard";
 import ChooseGenre from "../pages/ChooseGenre";
 import Values from "../pages/Values";
 
-const Stack = createStackNavigator();
+import { MainParamList } from "./MainParamList";
+
+const Stack = createStackNavigator<MainParamList>();
 
 export default function MainStack() {
   // 'Any' type because i can't identify the best prop.

@@ -2,15 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Image, Dimensions, Text } from "react-native";
 import VerticalSlider from "rn-vertical-slider";
-// import {
-//   useNavigation,
-//   RouteProp,
-//   ParamListBase,
-// } from "@react-navigation/native";
 
+import GoToNext from "../../components/Button";
 import man from "../../../assets/man_shape.png";
 import woman from "../../../assets/woman_shape.png";
-import GoToNext from "../../components/Button";
 
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({

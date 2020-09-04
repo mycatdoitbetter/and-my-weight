@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -8,8 +7,10 @@ import {
   Dimensions,
   Image,
 } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import GoToNext from "../../components/Button";
+import { MainParamList } from "../../routes/MainParamList";
 
 const { width, height } = Dimensions.get("window");
 
@@ -47,8 +48,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const InitialBoard = () => {
-  const { navigate } = useNavigation();
+const InitialBoard = ({
+  navigation,
+}: {
+  navigation: StackNavigationProp<MainParamList, "InitialBoard">;
+}) => {
+  const { navigate } = navigation;
   return (
     <View style={styles.container}>
       <View style={styles.viewLogo}>
