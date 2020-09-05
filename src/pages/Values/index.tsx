@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Image, Dimensions, Text } from "react-native";
 import VerticalSlider from "rn-vertical-slider";
+import { RouteProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+// import Modal from "react-native-modal";
 
 import GoToNext from "../../components/Button";
 import man from "../../../assets/man_shape.png";
 import woman from "../../../assets/woman_shape.png";
+import { MainParamList } from "../../routes/MainParamList";
 
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -26,13 +30,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const Values = (route: { params: { genre: string } }) => {
+const Values = ({
+  navigation,
+  route,
+}: {
+  navigation: StackNavigationProp<MainParamList, "Values">;
+  route: RouteProp<MainParamList, "Values">;
+}) => {
   const [gender, setGender] = useState("woman");
   const [_weight, setWeight] = useState(0);
   const [_height, setHeight] = useState(0);
 
+  const { navigate } = navigation;
+
   useEffect(() => {
     setGender(route.params?.genre);
+    setWeight(gender === "woman" ? 60 : 71);
+    setHeight(gender === "woman" ? 161 : 170);
   });
 
   return (
@@ -57,7 +71,7 @@ const Values = (route: { params: { genre: string } }) => {
           maximumTrackTintColor={"#65617D"}
           ballIndicatorColor={"#FF6584"}
           ballIndicatorTextColor={"#65617D"}
-          value={70}
+          value={_weight}
         />
         <View style={styles.imageView}>
           <Image
@@ -85,13 +99,24 @@ const Values = (route: { params: { genre: string } }) => {
           maximumTrackTintColor={"#65617D"}
           ballIndicatorColor={"#FF6584"}
           ballIndicatorTextColor={"#65617D"}
-          value={170}
+          value={_height}
         />
       </View>
 
-      <GoToNext
-        onPress={() => console.log("_weight:", _weight, "_height:", _height)}
-      />
+      <GoToNext onPress={() => navigate("Result", { _height, _weight })} />
+
+      {/* <Modal
+        testID={"modal"}
+        isVisible={true}
+        backdropColor="#0003"
+        backdropOpacity={0.8}
+        animationIn="zoomInDown"
+        animationOut="zoomOutUp"
+        animationInTiming={600}
+        animationOutTiming={600}
+        backdropTransitionInTiming={600}
+        backdropTransitionOutTiming={600}
+      /> */}
     </View>
   );
 };

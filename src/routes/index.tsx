@@ -10,6 +10,7 @@ import {
 import InitialBoard from "../pages/InitialBoard";
 import ChooseGenre from "../pages/ChooseGenre";
 import Values from "../pages/Values";
+import Result from "../pages/Result";
 
 import { MainParamList } from "./MainParamList";
 
@@ -48,6 +49,11 @@ export default function MainStack() {
         name="Values"
         component={Values}
         options={options({ title: "Weight & Height" })}
+      />
+      <Stack.Screen
+        name="Result"
+        component={Result}
+        options={options({ title: "Result" })}
       />
     </Stack.Navigator>
   );
