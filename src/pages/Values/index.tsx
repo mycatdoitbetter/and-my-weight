@@ -6,12 +6,14 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 // import Modal from "react-native-modal";
 
-import GoToNext from "../../components/Button";
 import man from "../../../assets/man_shape.png";
 import woman from "../../../assets/woman_shape.png";
+import GoToNext from "../../components/Button";
+import Modal from "../../components/Modal";
 import { MainParamList } from "../../routes/MainParamList";
 
 const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -41,13 +43,21 @@ const Values = ({
   const [_weight, setWeight] = useState(0);
   const [_height, setHeight] = useState(0);
 
+  const [showModal, setShowModal] = useState(false);
+
   const { navigate } = navigation;
 
   useEffect(() => {
     setGender(route.params?.genre);
-    setWeight(gender === "woman" ? 60 : 71);
-    setHeight(gender === "woman" ? 161 : 170);
   });
+
+  function goToResult() {
+    if (_weight === 0 || _height === 0) {
+      setShowModal(true);
+    } else {
+      navigate("Result", { _height, _weight });
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -81,7 +91,7 @@ const Values = ({
           />
         </View>
         <VerticalSlider
-          min={150.0}
+          min={145.0}
           max={200.0}
           showBallIndicator
           ballIndicatorHeight={0}
@@ -103,20 +113,9 @@ const Values = ({
         />
       </View>
 
-      <GoToNext onPress={() => navigate("Result", { _height, _weight })} />
+      <GoToNext onPress={goToResult} />
 
-      {/* <Modal
-        testID={"modal"}
-        isVisible={true}
-        backdropColor="#0003"
-        backdropOpacity={0.8}
-        animationIn="zoomInDown"
-        animationOut="zoomOutUp"
-        animationInTiming={600}
-        animationOutTiming={600}
-        backdropTransitionInTiming={600}
-        backdropTransitionOutTiming={600}
-      /> */}
+      <Modal isVisible={showModal} closeModal={() => setShowModal(false)} />
     </View>
   );
 };

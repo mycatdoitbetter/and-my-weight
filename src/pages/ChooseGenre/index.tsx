@@ -63,7 +63,6 @@ const ChooseGenre = ({
   const [genre, setGenre] = useState<string | number | ISwitchSelectorOption>(
     0
   );
-
   const { navigate } = navigation;
 
   return (
@@ -90,7 +89,7 @@ const ChooseGenre = ({
       <SwitchSelector
         style={{
           paddingTop: 80,
-          width: 330,
+          width: 300,
           alignSelf: "center",
           marginBottom: 86,
         }}
@@ -101,9 +100,9 @@ const ChooseGenre = ({
         textColor="#fff"
         buttonColor="#FF7582"
         options={options}
-        height={60}
+        height={50}
         initial={0}
-        fontSize={30}
+        fontSize={25}
         onPress={(value) => setGenre(value)}
       />
       <GoToNext
