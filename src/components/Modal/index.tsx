@@ -2,9 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import Modal from "react-native-modal";
 
-// import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
 import warn from "../../../assets/warn.png";
-import Button from "../Button";
 
 interface IModal {
   isVisible: boolean;
@@ -12,7 +10,38 @@ interface IModal {
 }
 
 const styles = StyleSheet.create({
-  modalView: { width: 180, height: 150, backgroundColor: "#fff" },
+  modalView: {
+    width: 250,
+    height: 200,
+    backgroundColor: "#355C7D",
+    borderRadius: 6,
+    elevation: 12,
+
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    color: "#fff",
+    fontFamily: "UbuntuRegular",
+    fontSize: 18,
+    paddingVertical: 23,
+    paddingHorizontal: 26,
+
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "#FF7582",
+    width: "60%",
+    paddingVertical: 2,
+    borderRadius: 6,
+  },
+  ok: {
+    color: "#fff",
+    fontFamily: "UbuntuRegular",
+    fontSize: 20,
+
+    textAlign: "center",
+  },
 });
 
 const WarnModal = ({ isVisible, closeModal }: IModal) => {
@@ -21,8 +50,7 @@ const WarnModal = ({ isVisible, closeModal }: IModal) => {
       <Modal
         style={{ alignSelf: "center" }}
         isVisible={isVisible}
-        backdropColor="transparent"
-        backdropOpacity={0.8}
+        backdropOpacity={0.3}
         animationIn="fadeInDown"
         animationOut="bounceOutDown"
         animationInTiming={500}
@@ -32,8 +60,11 @@ const WarnModal = ({ isVisible, closeModal }: IModal) => {
       >
         <View style={styles.modalView}>
           <Image source={warn} />
-          <TouchableOpacity onPress={() => closeModal()}>
-            <Text>OK</Text>
+          <Text style={styles.text}>
+            Hey! First, choose the weight and the height!
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={closeModal}>
+            <Text style={styles.ok}>Ok</Text>
           </TouchableOpacity>
         </View>
       </Modal>
