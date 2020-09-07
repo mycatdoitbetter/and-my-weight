@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 
@@ -18,16 +18,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   arrow: { color: "#355C7D" },
+  text: { fontSize: 25, color: "#fff", fontFamily: "UbuntuRegular" },
 });
 
 interface PropsButton {
   onPress: () => void;
+  last?: boolean;
 }
 
-const Button = ({ onPress }: PropsButton) => {
+const Button = ({ onPress, last }: PropsButton) => {
   return (
-    <RectButton style={styles.goNextButton} onPress={onPress}>
-      <Feather name="arrow-right" style={styles.arrow} size={30} />
+    <RectButton
+      style={
+        last
+          ? { ...styles.goNextButton, width: 198, height: 45 }
+          : styles.goNextButton
+      }
+      onPress={onPress}
+    >
+      {!last && (
+        <Feather
+          name={last ? "arrow-left" : "arrow-right"}
+          style={styles.arrow}
+          size={30}
+        />
+      )}
+      {last && <Text style={styles.text}>Try again!</Text>}
     </RectButton>
   );
 };

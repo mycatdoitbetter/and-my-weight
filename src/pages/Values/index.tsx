@@ -39,7 +39,7 @@ const Values = ({
   navigation: StackNavigationProp<MainParamList, "Values">;
   route: RouteProp<MainParamList, "Values">;
 }) => {
-  const [gender, setGender] = useState("woman");
+  const [genre, setGenre] = useState("woman");
   const [_weight, setWeight] = useState(0);
   const [_height, setHeight] = useState(0);
 
@@ -48,14 +48,14 @@ const Values = ({
   const { navigate } = navigation;
 
   useEffect(() => {
-    setGender(route.params?.genre);
+    setGenre(route.params?.genre);
   });
 
   function goToResult() {
     if (_weight === 0 || _height === 0) {
       setShowModal(true);
     } else {
-      navigate("Result", { _height, _weight });
+      navigate("Result", { _height, _weight, genre });
     }
   }
 
@@ -87,7 +87,7 @@ const Values = ({
           <Image
             style={{ height: 350 }}
             resizeMode="contain"
-            source={gender === "woman" ? woman : man}
+            source={genre === "woman" ? woman : man}
           />
         </View>
         <VerticalSlider
