@@ -13,9 +13,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { MainParamList } from "../../routes/MainParamList";
 import Button from "../../components/Button";
 import normalWoman from "../../../assets/results/normal_woman.png";
-// import overweightWoman from "../../../assets/results/overweight_woman.png";
+import overweightWoman from "../../../assets/results/overweight_woman.png";
 import normalMan from "../../../assets/results/normal_man.png";
-// import overweightMan from "../../../assets/results/overweight_man.png";
+import overweightMan from "../../../assets/results/overweight_man.png";
 import thinness from "../../../assets/results/thinness.png";
 
 import Texts from "./texts";
@@ -82,7 +82,7 @@ const Result = ({
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={normalMan}
+        source={overweightMan}
         style={{
           height: height * 0.5,
           width: width * 0.8,
