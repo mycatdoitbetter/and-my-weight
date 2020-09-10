@@ -12,11 +12,11 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import { MainParamList } from "../../routes/MainParamList";
 import Button from "../../components/Button";
-import normalWoman from "../../../assets/results/normal_woman.png";
-import overweightWoman from "../../../assets/results/overweight_woman.png";
-import normalMan from "../../../assets/results/normal_man.png";
+// import normalWoman from "../../../assets/results/normal_woman.png";
+// import overweightWoman from "../../../assets/results/overweight_woman.png";
+// import normalMan from "../../../assets/results/normal_man.png";
 import overweightMan from "../../../assets/results/overweight_man.png";
-import thinness from "../../../assets/results/thinness.png";
+// import thinness from "../../../assets/results/thinness.png";
 
 import Texts from "./texts";
 
@@ -24,6 +24,14 @@ interface IBMI {
   _height: number;
   _weight: number;
   genre: string;
+}
+
+interface IResult {
+  value: "" | "normal" | "overweight" | "thinness";
+}
+interface ITexts {
+  title: string;
+  description?: string;
 }
 
 const { width, height } = Dimensions.get("window");
@@ -35,6 +43,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  mainText: {
+    color: "#fff",
+    fontSize: 25,
+    fontFamily: "UbuntuBold",
+    textAlign: "center",
+    paddingHorizontal: 25,
+    paddingVertical: 10,
+  },
+  secondaryText: {
+    color: "#fff",
+    fontSize: 18,
+    fontFamily: "UbuntuRegular",
+    textAlign: "center",
+    paddingHorizontal: 30,
+  },
 });
 
 const Result = ({
@@ -44,31 +67,38 @@ const Result = ({
   navigation: StackNavigationProp<MainParamList, "Result">;
   route: RouteProp<MainParamList, "Result">;
 }) => {
-  const [BMIResult, setBMIResult] = useState(0);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState<IResult>({ value: "" });
+  const [texts, setTexts] = useState<ITexts>({ title: "", description: "" });
 
   function calcBMI({ _height, _weight, genre }: IBMI) {
     const BMI = _weight / (_height / 100) ** 2;
 
-    if (genre === "woman") {
-      if (BMI < 19.1) {
-        setResult("thinness");
-      } else if (BMI <= 25.8) {
-        setResult("normal");
-      } else if (BMI <= 27.3) {
-        setResult("overweight");
-      }
-    } else {
-      if (BMI < 20.7) {
-        setResult("thinness");
-      } else if (BMI <= 26.4) {
-        setResult("normal");
-      } else if (BMI <= 27.8) {
-        setResult("overweight");
-      }
+    switch (genre) {
+      case "woman":
+        if (BMI < 19.1) {
+          setTexts(Texts.thinness);
+          setResult({ value: "thinness" });
+        } else if (BMI <= 25.8) {
+          setTexts(Texts.normal);
+          setResult({ value: "normal" });
+        } else if (BMI >= 27.3) {
+          setTexts(Texts.overweight);
+          setResult({ value: "overweight" });
+        }
+        break;
+      default:
+        if (BMI < 20.7) {
+          setTexts(Texts.thinness);
+          setResult({ value: "thinness" });
+        } else if (BMI <= 26.4) {
+          setTexts(Texts.normal);
+          setResult({ value: "normal" });
+        } else if (BMI >= 27.8) {
+          setTexts(Texts.overweight);
+          setResult({ value: "overweight" });
+        }
+        break;
     }
-
-    setBMIResult(BMI);
   }
 
   useEffect(() => {
@@ -77,7 +107,22 @@ const Result = ({
     calcBMI({ _height, _weight, genre });
   }, []);
 
+  // function showImage(){
+  //   switch (sw) {
+  //     case value:
+
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  // }
+
   const { navigate } = navigation;
+
+  const { genre } = route.params;
+
+  console.log(texts);
 
   return (
     <View style={styles.container}>
@@ -89,18 +134,8 @@ const Result = ({
         }}
         resizeMode="contain"
       />
-      <Text
-        style={{
-          color: "#fff",
-          fontSize: 25,
-          fontFamily: "UbuntuRegular",
-          textAlign: "center",
-          padding: 25,
-        }}
-      >
-        Your BMI is Normal! Stay <Text style={{ color: "red" }}>Healthy!</Text>
-      </Text>
-      <Text>You can try do some more exercises! Look for a specialist!</Text>
+      <Text style={styles.mainText}>{texts.title}</Text>
+      <Text style={styles.secondaryText}>{texts.description}</Text>
       <Button onPress={() => navigate("ChooseGenre")} last />
     </View>
   );

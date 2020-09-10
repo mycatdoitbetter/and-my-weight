@@ -1,6 +1,7 @@
 interface ITexts {
   normal: {
     title: string;
+    description: string;
   };
   thinness: {
     title: string;
@@ -14,6 +15,7 @@ interface ITexts {
 const Texts: ITexts = {
   normal: {
     title: "Your BMI is Normal! Stay Healthy!",
+    description: "You are doing great!",
   },
   thinness: {
     title: "Your BMI indicates thinness.",

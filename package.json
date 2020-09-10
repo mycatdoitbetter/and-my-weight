@@ -28,8 +28,7 @@
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-switch-selector": "^2.0.6",
-    "react-native-web": "~0.11.7",
-    "rn-vertical-slider": "^2.0.1"
+    "react-native-web": "~0.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
