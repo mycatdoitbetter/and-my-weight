@@ -12,11 +12,11 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import { MainParamList } from "../../routes/MainParamList";
 import Button from "../../components/Button";
-// import normalWoman from "../../../assets/results/normal_woman.png";
-// import overweightWoman from "../../../assets/results/overweight_woman.png";
-// import normalMan from "../../../assets/results/normal_man.png";
+import normalWoman from "../../../assets/results/normal_woman.png";
+import overweightWoman from "../../../assets/results/overweight_woman.png";
+import normalMan from "../../../assets/results/normal_man.png";
 import overweightMan from "../../../assets/results/overweight_man.png";
-// import thinness from "../../../assets/results/thinness.png";
+import thinness from "../../../assets/results/thinness.png";
 
 import Texts from "./texts";
 
@@ -107,27 +107,31 @@ const Result = ({
     calcBMI({ _height, _weight, genre });
   }, []);
 
-  // function showImage(){
-  //   switch (sw) {
-  //     case value:
-
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
+  function showImage() {
+    const { genre } = route.params;
+    if (result.value === "overweight" && genre === "woman") {
+      return overweightWoman;
+    }
+    if (result.value === "overweight" && genre === "man") {
+      return overweightMan;
+    }
+    if (result.value === "normal" && genre === "woman") {
+      return normalWoman;
+    }
+    if (result.value === "normal" && genre === "man") {
+      return normalMan;
+    }
+    if (result.value === "thinness") {
+      return thinness;
+    }
+  }
 
   const { navigate } = navigation;
-
-  const { genre } = route.params;
-
-  console.log(texts);
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={overweightMan}
+        source={showImage()}
         style={{
           height: height * 0.5,
           width: width * 0.8,
