@@ -12,7 +12,7 @@ A React Native static app to calculate the BMI!
 </strong>
 </p>
 
-<p align="center">This aplication has made for train typescript and React antive features</a></p>
+<p align="center">This aplication has made for train typescript and React Native features!</a></p>
 
 </p>
 <p align="center">
@@ -26,4 +26,6 @@ A React Native static app to calculate the BMI!
 
 </p>
 
-![demo](demo/demo.gif)
+<p align="center">
+  <img src="demo/demo.gif" width="350px">
+</p>
